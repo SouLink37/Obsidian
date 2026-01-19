@@ -1,26 +1,88 @@
+
+
 ### 1️⃣ **路由与 Handler**
 
 - **路由**：决定请求路径和方法，触发对应的 handler 函数。
-    
 - **Handler**：处理请求并返回响应，入参为 `c *gin.Context`。
-    
 
-### 2️⃣ **匿名函数**：
+### 2️⃣ **匿名函数**
 
-`r.GET("/ping", func(c *gin.Context) {     c.JSON(200, gin.H{"message": "pong"}) })`
+```go
+r.GET("/ping", func(c *gin.Context) {
+    c.JSON(200, gin.H{"message": "pong"})
+})
+```
 
-### 3️⃣ **命名函数**：
+### 3️⃣ **命名函数**
 
-`func PingHandler(c *gin.Context) {     c.JSON(200, gin.H{"message": "pong"}) } r.GET("/ping", PingHandler)`
+```go
+func PingHandler(c *gin.Context) {
+    c.JSON(200, gin.H{"message": "pong"})
+}
 
-### 4️⃣ **结构体方法**：
+r.GET("/ping", PingHandler)
+```
 
-`type AuthHandler struct{} func (h *AuthHandler) Register(c *gin.Context) {     // 注册逻辑 } r.POST("/register", authHandler.Register)`
+### 4️⃣ **结构体方法**
+
+```go
+type AuthHandler struct{}
+
+func (h *AuthHandler) Register(c *gin.Context) {
+    // 注册逻辑
+}
+
+r.POST("/register", authHandler.Register)
+```
 
 ### 5️⃣ **总结**
 
 - **`c *gin.Context`**：所有 handler 函数的标准入参，处理请求与响应。
-    
 - **匿名函数 / 命名函数**：都可以用作路由的 handler。
-    
 - **路由定义**：`r.GET()`、`r.POST()` 等关联路径与处理函数。
+
+
+# c.Set() vs c.JSON()
+
+可以理解为set是go中的内部沟通， json是外部输出
+
+### 📌 总结
+
+```
+c.Set()      ← Go 代码内部沟通（Server ↔ Server）
+             在服务器内部传递数据
+
+c.JSON()     ← 外部输出（Server → Client）
+             发送给客户端的响应
+```
+
+### 🔄 可视化流程
+
+```
+客户端(Postman)
+    ↓ 请求
+    ↓
+🖥️ 服务器 Go 代码
+    ↓
+middleware/auth.go
+├─ 验证 Token
+├─ c.Set("userID", 123)  ← 内部沟通
+└─ c.Next()
+    ↓
+handlers/post.go
+├─ c.Get("userID")  ← 获取中间件的信息（内部沟通）
+├─ 创建文章
+└─ c.JSON(201, response)  ← 外部输出
+    ↓ 响应
+    ↓
+客户端(Postman)收到 JSON
+```
+
+### 📋 对比
+
+| | c.Set() | c.JSON() |
+|------|---------|---------|
+| **沟通方向** | 内部（Go 代码之间） | 外部（Server → Client） |
+| **谁能看到** | 只有后续 handler/middleware | 客户端 |
+| **用途** | 传递中间件的验证结果 | 返回 API 响应 |
+| **例子** | `c.Set("userID", 123)` | `c.JSON(200, data)` |
