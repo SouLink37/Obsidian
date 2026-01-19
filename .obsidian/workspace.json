@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WEB3/solidity/基础.md",
+                "file": "WEB3/solidity/特殊类型.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "基础"
+              "title": "特殊类型"
             }
           }
         ]
@@ -185,8 +185,17 @@
   },
   "active": "4e488b14b8b156a6",
   "lastOpenFiles": [
+    "SLAM/vins-fusion/initialization.md",
+    "SLAM/vins-fusion/loop fusion.md",
+    "SLAM/vins-fusion/zupt.md",
+    "SLAM/camera/双目相机标定.md",
+    "WEB3/solidity/特殊类型.md",
     "WEB3/solidity/REMIX.md",
     "WEB3/solidity/基础.md",
+    "WEB3/basic/区块链共识算法.md",
+    "WEB3/basic/共识机制.md",
+    "WEB3/basic/基础知识.md",
+    "Golang/JWT.md",
     "WEB3/solidity/数组.md",
     "Prompt.md",
     "WEB3/基础知识.md",
