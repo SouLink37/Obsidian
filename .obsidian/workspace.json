@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WEB3/solidity/特殊类型.md",
+                "file": "WEB3/solidity/基础.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "特殊类型"
+              "title": "基础"
             }
           }
         ]
@@ -185,18 +185,18 @@
   },
   "active": "4e488b14b8b156a6",
   "lastOpenFiles": [
+    "WEB3/solidity/REMIX.md",
+    "WEB3/solidity/数组.md",
+    "WEB3/solidity/特殊类型.md",
+    "WEB3/solidity/基础.md",
     "SLAM/vins-fusion/initialization.md",
     "SLAM/vins-fusion/loop fusion.md",
     "SLAM/vins-fusion/zupt.md",
     "SLAM/camera/双目相机标定.md",
-    "WEB3/solidity/特殊类型.md",
-    "WEB3/solidity/REMIX.md",
-    "WEB3/solidity/基础.md",
     "WEB3/basic/区块链共识算法.md",
     "WEB3/basic/共识机制.md",
     "WEB3/basic/基础知识.md",
     "Golang/JWT.md",
-    "WEB3/solidity/数组.md",
     "Prompt.md",
     "WEB3/基础知识.md",
     "WEB3/UniSwap/v2.md",
@@ -211,14 +211,12 @@
     "SLAM/camera/双目相机标定.md",
     "Golang/JWT.md",
     "Golang/back-end.md",
-    "Golang/basic.md",
     "WEB3/solidity",
     "WEB3/UniSwap",
     "WEB3",
     "SLAM/vins-fusion",
     "SLAM/camera",
     "SLAM",
-    "README.md",
     "Image/x * y = k.png",
     "Image/vins曝光时间.png",
     "Image/vins整体流程.png",
@@ -229,9 +227,6 @@
     "Image",
     "Golang",
     "AI/openspec/specs/readme.txt",
-    "AI/openspec/changes/readme.txt",
-    "AI/openspec/QUICK_START.md",
-    "AI/openspec/AGENTS.md",
-    "Welcome.md"
+    "AI/openspec/changes/readme.txt"
   ]
 }
