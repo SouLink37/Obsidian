@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SLAM/vins-fusion/VINS概述.md",
+                "file": "WEB3/solidity/进阶.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "VINS概述"
+              "title": "进阶"
             }
           }
         ]
@@ -172,26 +172,27 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "bases:创建新数据库": false
+      "command-palette:打开命令面板": false
     }
   },
   "active": "9aeeade8322ae6fe",
   "lastOpenFiles": [
+    "WEB3/solidity/基础.md",
+    "WEB3/solidity/进阶.md",
+    "WEB3/solidity/数组.md",
+    "SLAM/vins-fusion/VINS概述.md",
     "README.md",
     "SLAM/vins-fusion/未命名.md",
-    "SLAM/vins-fusion/VINS概述.md",
     "SLAM/VINS_DETAILED_INTRODUCTION.md",
     "SLAM/vins-fusion/loop fusion.md",
     "SLAM/vins-fusion/未命名",
     "SLAM/vins-fusion/initialization.md",
-    "WEB3/solidity/基础.md",
-    "WEB3/solidity/数组.md",
     "Prompt.md",
     "Image/vins曝光时间.png",
     "WEB3/solidity/特殊类型.md",
@@ -221,7 +222,6 @@
     "Image/vinsfusion-初始化1.png",
     "Image",
     "AI/openspec/QUICK_START.md",
-    "AI/openspec/AGENTS.md",
-    "SLAM/camera/双目相机标定.md"
+    "AI/openspec/AGENTS.md"
   ]
 }
