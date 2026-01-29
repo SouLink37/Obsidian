@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SLAM/Catographer/条件数.md",
+                "file": "SLAM/资料.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "条件数"
+              "title": "资料"
             }
           }
         ]
@@ -183,8 +183,12 @@
   },
   "active": "9aeeade8322ae6fe",
   "lastOpenFiles": [
-    "SLAM/Catographer/非线性优化.md",
+    "SLAM/面试收集.md",
+    "SLAM/资料.md",
+    "SLAM/vins-fusion/estimator.md",
+    "SLAM/vins-fusion/zupt.md",
     "SLAM/Catographer/条件数.md",
+    "SLAM/Catographer/非线性优化.md",
     "WEB3/solidity/进阶.md",
     "Image/LM优化.png",
     "SLAM/Catographer/栅格地图.md",
@@ -195,9 +199,7 @@
     "SLAM/camera/双目相机标定.md",
     "SLAM/vins-fusion/VINS概述.md",
     "SLAM/Catographer",
-    "SLAM/未命名.md",
     "README.md",
-    "SLAM/vins-fusion/未命名.md",
     "SLAM/VINS_DETAILED_INTRODUCTION.md",
     "SLAM/vins-fusion/loop fusion.md",
     "SLAM/vins-fusion/未命名",
@@ -217,8 +219,6 @@
     "Golang/用户认证与授权.md",
     "Golang/字符串切片-header提取.md",
     "Golang/中间件（Middleware）.md",
-    "Golang/basic.md",
-    "Golang/back-end.md",
     "Golang",
     "未命名.canvas",
     "Image/uniswapv2-price.png",
