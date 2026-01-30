@@ -1,111 +1,208 @@
-
-## 条件数计算方法详解
+## 当前条件数计算方法
 
 ### 1. 整体流程
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Ceres Problem                            │
-│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐        │
-│  │IMU Factor│  │IMU Factor│  │Visual   │  │Visual   │  ...  │
-│  │    #1    │  │    #2    │  │Factor #1│  │Factor #2│        │
-│  └─────────┘  └─────────┘  └─────────┘  └─────────┘        │
-└─────────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-              ┌────────────────────────┐
-              │  对每个因子分别计算：   │
-              │  1. 获取雅可比 J        │
-              │  2. 计算 H = J^T * J    │
-              │  3. 计算条件数 κ        │
-              └────────────────────────┘
-                           │
-                           ▼
-              ┌────────────────────────┐
-              │  统计汇总：             │
-              │  - 平均条件数           │
-              │  - 最大/最小条件数      │
-              │  - Good/Fair/Poor 分布  │
-              └────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                     ceres::Solve() 完成后                        │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  problem.Evaluate(apply_loss_function=true, jacobian=&J_crs)    │
+│                                                                  │
+│  返回 CRS 格式的稀疏 Jacobian：                                  │
+│  ✓ 已经是 local parameterization（pose 6维）                    │
+│  ✓ 已经应用 loss function reweighting                           │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              CRS → Eigen::SparseMatrix<double> J                │
+│                      (保持稀疏，不转 dense)                      │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              构建稀疏 Hessian: H = J^T × J                       │
+│                                                                  │
+│  J ∈ R^{m×n}  (m=残差数, n=参数维度)                            │
+│  H ∈ R^{n×n}  (n×n 比 m×n 小很多，更快)                         │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┴───────────────┐
+              ▼                               ▼
+┌─────────────────────────┐     ┌─────────────────────────┐
+│   幂迭代求 λ_max        │     │   逆幂迭代求 λ_min      │
+│   (~30 次迭代)          │     │   (~30 次迭代)          │
+└─────────────────────────┘     └─────────────────────────┘
+              │                               │
+              └───────────────┬───────────────┘
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    cond(H) = λ_max / λ_min                      │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-### 2. 单个因子的条件数计算
+---
 
-以一个 **IMU 因子** 为例：
+### 2. 数学原理
+
+**条件数定义：**
+
+```
+cond(H) = λ_max / λ_min
+
+其中 H = J^T J 是 Hessian 矩阵（正规方程的系数矩阵）
+```
+
+**与 Jacobian 条件数的关系：**
+
+```
+H 的特征值 λ = J 的奇异值 σ 的平方
+
+所以: cond(H) = cond(J)²
+```
+
+---
+
+### 3. 幂迭代法求最大特征值
+
+**原理：** 任意向量经过矩阵多次乘法后，会收敛到最大特征值对应的特征向量方向。
 
 ```cpp
-// IMU 因子的残差维度：15 (3 位置 + 3 速度 + 3 旋转 + 3 ba + 3 bg)
-// IMU 因子的参数：
-//   - para_Pose[i]:      7 维 (位置 3 + 四元数 4) → 切空间 6 维
-//   - para_SpeedBias[i]: 9 维 (速度 3 + ba 3 + bg 3)
-//   - para_Pose[j]:      7 维 → 切空间 6 维
-//   - para_SpeedBias[j]: 9 维
-// 总参数维度：6 + 9 + 6 + 9 = 30 维
-
-// 雅可比矩阵 J: 15 × 30
-J = [J_pose_i | J_sb_i | J_pose_j | J_sb_j]
-    ← 6 →    ← 9 →   ← 6 →    ← 9 →
-
-// 海森矩阵 H = J^T * J: 30 × 30
-H = J^T * J
-
-// 条件数 = 最大特征值 / 最小特征值
-κ = λ_max / λ_min
+double powerIterationMax(const SparseMatrix& H, VectorXd& v, int max_iter) {
+    // 1. 随机初始化
+    v = VectorXd::Random(n);
+    v.normalize();
+    
+    double lambda = 0;
+    
+    for (int i = 0; i < max_iter; ++i) {
+        // 2. 矩阵-向量乘法
+        VectorXd y = H * v;
+        
+        // 3. Rayleigh 商 = 特征值估计
+        double lambda_new = v.dot(y);
+        
+        // 4. 归一化
+        v = y / y.norm();
+        
+        // 5. 收敛检查
+        if (|lambda_new - lambda| < tol) break;
+        lambda = lambda_new;
+    }
+    
+    return lambda;  // 收敛到 λ_max
+}
 ```
 
-### 3. 代码实现
+**复杂度：** O(iter × nnz)，其中 nnz 是 H 的非零元素数
+
+---
+
+### 4. 逆幂迭代法求最小特征值
+
+**原理：** 对 H⁻¹ 做幂迭代，收敛到 H 的最小特征值。
 
 ```cpp
-// 1. 从 Ceres 获取因子的雅可比
-const ceres::CostFunction* cost_function = problem.GetCostFunctionForResidualBlock(rid);
-cost_function->Evaluate(parameter_blocks.data(), residuals.data(), jacobians.data());
-
-// 2. 构建完整的雅可比矩阵 J
-Eigen::MatrixXd J(num_residuals, total_param_dim);
-// ... 填充 J ...
-
-// 3. 计算海森矩阵
-Eigen::MatrixXd H = J.transpose() * J;
-
-// 4. 计算条件数（使用特征值分解）
-Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> solver(H);
-Eigen::VectorXd eigenvalues = solver.eigenvalues();
-
-double lambda_max = eigenvalues.maxCoeff();
-double lambda_min = eigenvalues.minCoeff();
-
-// 阈值保护
-const double eps = 1e-10 * lambda_max;
-if (lambda_min < eps) lambda_min = eps;
-
-double kappa = lambda_max / lambda_min;
+double inverseIterationMin(const SparseMatrix& H, VectorXd& v, int max_iter) {
+    // 1. 预分解 H（只做一次）
+    SparseLU<SparseMatrix> solver;
+    solver.compute(H);
+    
+    // 2. 随机初始化
+    v = VectorXd::Random(n);
+    v.normalize();
+    
+    double lambda = 0;
+    
+    for (int i = 0; i < max_iter; ++i) {
+        // 3. 求解 H * y = v（等价于 y = H⁻¹ * v）
+        VectorXd y = solver.solve(v);
+        
+        // 4. 归一化
+        v = y / y.norm();
+        
+        // 5. 计算最小特征值
+        lambda = 1.0 / v.dot(H * v);
+    }
+    
+    return lambda;  // 收敛到 λ_min
+}
 ```
 
-### 4. 条件数的含义
+**复杂度：** O(iter × solve)，其中 solve 是稀疏 LU 求解的复杂度
 
-|条件数 κ|状态|含义|
+---
+
+### 5. 子系统分析（IMU / Visual）
+
+**方法：从全局 Jacobian 按行提取子矩阵**
+
+```
+全局 Jacobian J (m × n):
+┌─────────────────────────┐
+│  IMU 残差行 (150 行)    │ ← J_imu
+├─────────────────────────┤
+│  Visual 残差行 (1000行) │ ← J_visual  
+├─────────────────────────┤
+│  Marg 残差行 (84 行)    │
+└─────────────────────────┘
+
+H_imu = J_imu^T × J_imu
+H_visual = J_visual^T × J_visual
+
+分别计算 cond(H_imu) 和 cond(H_visual)
+```
+
+**为什么这样做正确：**
+
+- 列维度保持一致（都是 n 维参数空间）
+- 不同因子约束不同参数，但在同一参数空间
+- 可以看出哪类因子导致条件数恶化
+
+---
+
+### 6. 性能对比
+
+|方法|复杂度|1234×356 矩阵耗时|
 |---|---|---|
-|κ < 10⁴|✓ Good|数值稳定，优化收敛良好|
-|10⁴ ≤ κ < 10⁶|⚠️ Fair|可能有轻微数值问题|
-|κ ≥ 10⁶|❌ Poor|数值不稳定，可能导致优化发散|
+|Full SVD|O(mn²)|~2500 ms|
+|Full 特征值分解|O(n³)|~500 ms|
+|**幂迭代 + 逆幂迭代**|O(k × nnz)|**~10 ms**|
 
-### 5. 为什么分别计算 IMU 和 Visual？
+---
 
-**整体 Problem 的条件数** 反映的是所有因子耦合后的情况，但无法定位问题来源。
+### 7. 输出指标解释
 
-**分别计算** 可以帮助你：
+|指标|含义|健康范围|
+|---|---|---|
+|`λ_max`|最大特征值，最强约束方向|-|
+|`λ_min`|最小特征值，最弱约束方向|> 1e-6|
+|`cond(H)`|条件数 = λ_max/λ_min|< 1e10|
+|`smallest_vector`|最小特征值对应的特征向量|退化方向|
 
-- 判断是 IMU 参数（如 bias）还是 Visual 参数（如特征点深度）导致的病态
-- 针对性地调整参数或添加正则化
-
-### 6. 数学关系
+**状态判断：**
 
 ```
-Jacobian 条件数:  κ(J) = σ_max / σ_min  (奇异值)
-Hessian 条件数:   κ(H) = λ_max / λ_min  (特征值)
-
-关系: κ(H) = κ(J)²
-
-因为: H = J^T * J
-      λ(H) = σ(J)²
+cond(H) < 1e6   → ✓ Good     (数值稳定)
+cond(H) < 1e8   → ⚠️ OK      (轻微问题)
+cond(H) < 1e10  → ⚠️ Fair    (需要关注)
+cond(H) ≥ 1e10  → ❌ Poor    (数值不稳定)
 ```
+
+---
+
+### 8. 退化方向分析
+
+最小特征值对应的特征向量 `v_min` 指示**哪个参数方向不可观**：
+
+```
+v_min = [v_pose, v_vel, v_bias, v_features, v_ex, v_td]
+
+如果 v_pose 分量大 → pose 退化（yaw/z/scale 不可观）
+如果 v_features 分量大 → 特征点深度退化
+```
+
+这对于诊断 VINS 漂移非常有用！
