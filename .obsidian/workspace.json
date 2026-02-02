@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SLAM/vins-fusion/imu预积分和visual条件数.md",
+                "file": "SLAM/资料.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "imu预积分和visual条件数"
+              "title": "资料"
             }
           }
         ]
@@ -183,10 +183,10 @@
   },
   "active": "9aeeade8322ae6fe",
   "lastOpenFiles": [
-    "SLAM/basic/条件数.md",
     "SLAM/basic/Ceres Solver.md",
-    "SLAM/basic/非线性优化.md",
+    "SLAM/basic/条件数.md",
     "SLAM/vins-fusion/imu预积分和visual条件数.md",
+    "SLAM/basic/非线性优化.md",
     "SLAM/basic",
     "SLAM/资料.md",
     "SLAM/面试收集.md",
