@@ -136,7 +136,125 @@
   - H_prior = H_rr - H_rm H_mm⁻¹ H_mr
 - 结果：**删变量但不删信息**
 
----
+### 7.3 边缘化并不是非线性优化，为什么有ceres因子
+
+
+边缘化本身确实是 Schur 消元，是确定性的。但边缘化的**结果**需要被"包装"成一个 Ceres Factor，才能在后续优化中继续约束保留的变量。
+
+### 让我解释这个转换过程
+
+**边缘化产生的是什么？**
+
+```
+Schur 补后得到：
+- 新的 Hessian：A' = Arr - Arm * Amm⁻¹ * Amr
+- 新的信息向量：b' = brr - Arm * Amm⁻¹ * bmm
+
+这等价于一个二次型约束：
+  ½ xᵀ A' x - bᵀ x = const
+```
+
+**问题来了**：Ceres 需要的是什么？
+
+```
+Ceres 需要：
+- 残差 r（向量）
+- 雅可比 J（矩阵）
+
+然后 Ceres 内部会构建：
+  A = Jᵀ J
+  b = Jᵀ r
+```
+
+**所以需要做一个"逆向分解"**：
+
+```
+已知：A', b'（边缘化的结果）
+求：J, r 使得 Jᵀ J = A', Jᵀ r = b'
+```
+
+### 代码中的实现
+
+```cpp
+void MarginalizationInfo::marginalize() {
+    // ... Schur 补得到 A 和 b ...
+    
+    // 关键：把 A, b 分解回 J, r 的形式
+    // A = V * S * Vᵀ（特征值分解）
+    Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes2(A);
+    
+    // J = sqrt(S) * Vᵀ
+    // 这样 Jᵀ J = V * sqrt(S) * sqrt(S) * Vᵀ = V * S * Vᵀ = A ✓
+    linearized_jacobians = S_sqrt.asDiagonal() * saes2.eigenvectors().transpose();
+    
+    // r = sqrt(S⁻¹) * Vᵀ * b
+    // 这样 Jᵀ r = V * sqrt(S) * sqrt(S⁻¹) * Vᵀ * b = V * Vᵀ * b = b ✓
+    linearized_residuals = S_inv_sqrt.asDiagonal() * saes2.eigenvectors().transpose() * b;
+}
+```
+
+### 为什么要这样做？
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  边缘化的数学本质：                                      │
+│                                                         │
+│  原问题：min ½||r_imu||² + ½||r_vis||² + ...           │
+│                                                         │
+│  边缘化后：min ½||r_imu'||² + ½||r_vis'||² + ½||r_prior||²  │
+│                                        ↑                │
+│                              这就是边缘化先验因子        │
+│                              它"压缩"了被边缘化变量的信息 │
+└─────────────────────────────────────────────────────────┘
+```
+
+### MarginalizationFactor 的 Evaluate
+
+```cpp
+bool MarginalizationFactor::Evaluate(...) {
+    // 计算当前状态相对于线性化点的增量
+    Eigen::VectorXd dx = x_current - x_linearization_point;
+    
+    // 一阶泰勒展开：r = r₀ + J₀ * dx
+    residuals = linearized_residuals + linearized_jacobians * dx;
+    
+    // 雅可比保持固定（FEJ）
+    jacobians = linearized_jacobians;
+    
+    return true;
+}
+```
+
+### 图示总结
+
+```
+边缘化过程：
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│  原始因子    │     │  Schur 补    │     │  Ceres Factor│
+│  (IMU,视觉)  │ ──► │  得到 A', b' │ ──► │  J, r 形式   │
+│              │     │              │     │              │
+└──────────────┘     └──────────────┘     └──────────────┘
+                           ↓
+                     确定性计算
+                     （不是优化）
+                           ↓
+                     ┌──────────────┐
+                     │ 分解：       │
+                     │ A' = JᵀJ    │
+                     │ b' = Jᵀr    │
+                     └──────────────┘
+```
+
+### 本质理解
+
+|概念|说明|
+|---|---|
+|边缘化|确定性的 Schur 消元，压缩信息|
+|边缘化先验因子|把压缩后的信息"包装"成 Ceres 能理解的 (J, r) 形式|
+|为什么要包装|Ceres 的接口是 CostFunction，需要提供残差和雅可比|
+
+**简单说**：边缘化是"压缩信息"，MarginalizationFactor 是"把压缩后的信息翻译成 Ceres 的语言"。
+
 
 ## 8. FEJ（First Estimate Jacobian）与一致性/可观性
 
@@ -148,6 +266,7 @@
    否则，如果对这些变量使用新的线性化点重新计算 Jacobian，就会导致 prior 与其他因子的零空间结构不一致，从而在本应不可观的方向上引入虚假约束，破坏系统一致性。
 >
   而对于那些不受 prior 影响的新观测因子，则可以正常在当前估计点重新线性化，使用最新的 Jacobian。
+  
 ### 8.1 问题：反复线性化会改变“零空间”
 - 非线性系统每次迭代都会在新估计点计算 Jacobian：J(x_k)
 - 线性化点变了 ⇒ J 变 ⇒ H=JᵀJ 的零空间结构也变
