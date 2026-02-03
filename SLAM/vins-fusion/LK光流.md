@@ -11,55 +11,62 @@
 
 ## 一、整体流程图
 
+> **VINS 不对图像去畸变，只对特征点坐标去畸变**
+
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                    trackImage() 完整流程                             │
+│                    trackImage() 完整流程                 │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  输入: cur_img (当前帧), rightImg (右目，可选)                       │
-│                                                                     │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │ Step 1: 帧间光流追踪 (Temporal Optical Flow)                 │   │
-│  │         prev_img → cur_img                                   │   │
-│  │         prev_pts → cur_pts                                   │   │
-│  └─────────────────────────────────────────────────────────────┘   │
+│  Step 1: 帧间光流追踪（畸变图像上）                                  │
+│          prev_img (畸变) → cur_img (畸变)                           │
+│          prev_pts (畸变) → cur_pts (畸变)                           │
 │                              ↓                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │ Step 2: 反向光流验证 (Reverse Check) [可选]                  │   │
-│  │         cur_img → prev_img                                   │   │
-│  │         cur_pts → reverse_pts                                │   │
-│  │         筛选: |prev_pts - reverse_pts| <= 0.5 pixel          │   │
-│  └─────────────────────────────────────────────────────────────┘   │
+│  Step 2: 反向光流验证（畸变图像上）                                  │
 │                              ↓                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │ Step 3: 设置Mask + 新特征检测                                 │   │
-│  │         setMask(): 已有特征周围画圆屏蔽                       │   │
-│  │         goodFeaturesToTrack(): 检测新特征补充                 │   │
-│  └─────────────────────────────────────────────────────────────┘   │
+│  Step 3: Mask + 新特征检测（畸变图像上）                             │
 │                              ↓                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │ Step 4: 去畸变 (Undistortion)                                 │   │
-│  │         cur_pts (像素坐标) → cur_un_pts (归一化平面坐标)      │   │
-│  └─────────────────────────────────────────────────────────────┘   │
+│  Step 4: 左目点去畸变                                               │
+│          cur_pts (畸变) → cur_un_pts (归一化)   ← Line 436          │
 │                              ↓                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │ Step 5: 计算特征点速度                                        │   │
-│  │         pts_velocity = (cur_un_pts - prev_un_pts) / dt       │   │
-│  └─────────────────────────────────────────────────────────────┘   │
+│  Step 5: 左目速度计算（用归一化坐标）                                │
+│          pts_velocity = (cur_un_pts - prev_un_pts) / dt             │
 │                              ↓                                      │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │ Step 6: 双目匹配 (Stereo Matching) [如果有右目]               │   │
-│  │         cur_img → rightImg (左右光流)                         │   │
-│  │         cur_pts → cur_right_pts                              │   │
-│  │         + 反向验证                                            │   │
-│  └─────────────────────────────────────────────────────────────┘   │
+│  Step 6: 双目光流追踪（畸变图像上）                                  │
+│          cur_img (畸变) → rightImg (畸变)                           │
+│          cur_pts (畸变) → cur_right_pts (畸变)                      │
 │                              ↓                                      │
-│  输出: featureFrame (feature_id → [camera_id, xyz_uv_velocity])   │
+│  Step 7: 右目点去畸变  ← Line 548                                   │
+│          cur_right_pts (畸变) → cur_un_right_pts (归一化)           │
+│                              ↓                                      │
+│  Step 8: 右目速度计算（用归一化坐标）← Line 549-552                  │
+│          right_pts_velocity = (cur_un_right_pts - prev) / dt        │
+│                              ↓                                      │
+│  输出: featureFrame                                                 │
+│        左目: (cur_un_pts, cur_pts, pts_velocity)                    │
+│        右目: (cur_un_right_pts, cur_right_pts, right_pts_velocity)  │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
+代码示例
+```
+// 左目去畸变
+cur_un_pts = undistortedPts(cur_pts, m_camera[0]);  
+pts_velocity = ptsVelocity(ids, cur_un_pts, cur_un_pts_map, prev_un_pts_map);
+  
+// 左目输出
+for (size_t i = 0; i < ids.size(); i++) {
+
+x = cur_un_pts[i].x; // 归一化x（去畸变后）
+y = cur_un_pts[i].y; // 归一化y（去畸变后）
+p_u = cur_pts[i].x; // 像素u（畸变）
+p_v = cur_pts[i].y; // 像素v（畸变）
+velocity_x = pts_velocity[i].x; // 归一化速度
+velocity_y = pts_velocity[i].y;
+}
+```
 
 ## 二、Step 1: 帧间光流追踪
 
@@ -251,7 +258,7 @@ FeatureTracker::ptsVelocity(vector<int> &ids, vector<cv::Point2f> &pts,
 }
 ```
 
-**用途**：速度用于优化中的**时间偏移补偿**（td校正）。
+**用途**：速度用于优化中的[[td优化  | 时间偏移补偿（td矫正）]]。
 
 ---
 
