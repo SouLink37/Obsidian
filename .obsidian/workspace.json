@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SLAM/basic/GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数.md",
+                "file": "SLAM/Catographer/Refactoring-Relocation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数"
+              "title": "Refactoring-Relocation"
             }
           }
         ]
@@ -183,9 +183,13 @@
   },
   "active": "9aeeade8322ae6fe",
   "lastOpenFiles": [
+    "SLAM/Catographer/CSM-Correlative Scan Match.md",
+    "SLAM/Catographer/Refactoring-Relocation.md",
+    "SLAM/面试收集.md",
+    "README.md",
+    "SLAM/basic/GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数.md",
     "C++/设计模式/抽象工厂模式.md",
     "C++/shm.md",
-    "SLAM/basic/GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数.md",
     "C++/设计模式",
     "SLAM/vins-fusion/LK光流.md",
     "SLAM/vins-fusion/td优化.md",
@@ -194,7 +198,6 @@
     "SLAM/vins-fusion/initialization.md",
     "SLAM/vins-fusion/imu预积分和visual条件数.md",
     "SLAM/vins-fusion/estimator.md",
-    "SLAM/Catographer/CSM-Correlative Scan Match.md",
     "SLAM/Catographer/栅格地图.md",
     "SLAM/vins-fusion/VINS概述.md",
     "SLAM/资料.md",
@@ -202,7 +205,6 @@
     "SLAM/basic/条件数.md",
     "SLAM/basic/非线性优化.md",
     "SLAM/basic",
-    "SLAM/面试收集.md",
     "SLAM/vins-fusion/zupt.md",
     "WEB3/solidity/进阶.md",
     "Image/LM优化.png",
@@ -211,12 +213,10 @@
     "Pasted image 20260128205416.png",
     "SLAM/camera/双目相机标定.md",
     "SLAM/Catographer",
-    "README.md",
     "SLAM/VINS_DETAILED_INTRODUCTION.md",
     "SLAM/vins-fusion/未命名",
     "WEB3/solidity/基础.md",
     "WEB3/solidity/数组.md",
-    "Prompt.md",
     "Image/vins曝光时间.png",
     "WEB3/basic",
     "Image/xy = k.png",
