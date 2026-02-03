@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SLAM/资料.md",
+                "file": "SLAM/vins-fusion/LK光流.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "资料"
+              "title": "LK光流"
             }
           }
         ]
@@ -183,12 +183,16 @@
   },
   "active": "9aeeade8322ae6fe",
   "lastOpenFiles": [
+    "SLAM/vins-fusion/initialization.md",
+    "SLAM/vins-fusion/LK光流.md",
+    "SLAM/vins-fusion/VINS概述.md",
+    "SLAM/vins-fusion/loop fusion.md",
+    "SLAM/资料.md",
     "SLAM/basic/Ceres Solver.md",
     "SLAM/basic/条件数.md",
     "SLAM/vins-fusion/imu预积分和visual条件数.md",
     "SLAM/basic/非线性优化.md",
     "SLAM/basic",
-    "SLAM/资料.md",
     "SLAM/面试收集.md",
     "SLAM/vins-fusion/estimator.md",
     "SLAM/vins-fusion/zupt.md",
@@ -200,13 +204,10 @@
     "Image/分支定界.png",
     "Pasted image 20260128205416.png",
     "SLAM/camera/双目相机标定.md",
-    "SLAM/vins-fusion/VINS概述.md",
     "SLAM/Catographer",
     "README.md",
     "SLAM/VINS_DETAILED_INTRODUCTION.md",
-    "SLAM/vins-fusion/loop fusion.md",
     "SLAM/vins-fusion/未命名",
-    "SLAM/vins-fusion/initialization.md",
     "WEB3/solidity/基础.md",
     "WEB3/solidity/数组.md",
     "Prompt.md",
@@ -219,7 +220,6 @@
     "Image/xy = k.png",
     "Image/block header.png",
     "Golang/问题笔记.md",
-    "Golang/用户认证与授权.md",
     "Golang",
     "未命名.canvas",
     "Image/uniswapv2-price.png",
