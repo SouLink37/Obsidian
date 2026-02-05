@@ -13,34 +13,6 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Prompt.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Prompt"
-            }
-          },
-          {
-            "id": "9227872aa6ad4aa8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "SLAM/资料.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "资料"
-            }
-          },
-          {
-            "id": "f93cb81f77174896",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "WEB3/solidity/基础.md",
                 "mode": "source",
                 "source": false
@@ -49,8 +21,7 @@
               "title": "基础"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "奇异矩阵（Singular",
+                "query": "calldata",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -107,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
     "id": "aaa6d272afc46d58",
@@ -201,60 +172,53 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "bases:创建新数据库": false
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "f93cb81f77174896",
+  "active": "9aeeade8322ae6fe",
   "lastOpenFiles": [
-    "WEB3/solidity/特殊类型.md",
-    "WEB3/solidity/REMIX.md",
+    "未命名 1.base",
+    "未命名.base",
     "WEB3/solidity/数组.md",
+    "WEB3/solidity/REMIX.md",
     "WEB3/solidity/进阶.md",
+    "WEB3/solidity/特殊类型.md",
     "WEB3/solidity/基础.md",
-    "SLAM/Catographer/Refactoring-Relocation.md",
-    "SLAM/面试收集.md",
-    "Command.md",
-    "Prompt.md",
-    "SLAM/Catographer/栅格地图.md",
-    "SLAM/Catographer/CSM-Correlative Scan Match.md",
     "动态重定位.png",
     "静态重定位.png",
-    "Pasted image 20260203185529.png",
-    "自动驾驶车辆的地图构建.md",
     "SLAM/Catographer/Refactoring-Relocation.md",
-    "Linux/实用命令.md",
-    "Linux",
-    "SLAM/Catographer/CSM-Correlative Scan Match.md",
-    "SLAM/basic/GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数.md",
-    "SLAM/basic/Ceres Solver.md",
-    "SLAM/basic/条件数.md",
-    "SLAM/basic/非线性优化.md",
-    "README.md",
-    "C++/设计模式/抽象工厂模式.md",
-    "C++/shm.md",
-    "C++/设计模式",
-    "SLAM/vins-fusion/LK光流.md",
+    "SLAM/camera/双目相机标定.md",
+    "SLAM/面试收集.md",
+    "SLAM/资料.md",
     "SLAM/vins-fusion/td优化.md",
-    "td优化｜**时间偏移补偿**.md",
-    "SLAM/vins-fusion/loop fusion.md",
-    "SLAM/vins-fusion/initialization.md",
     "SLAM/vins-fusion/imu预积分和visual条件数.md",
     "SLAM/vins-fusion/estimator.md",
-    "SLAM/vins-fusion/VINS概述.md",
-    "SLAM/资料.md",
+    "SLAM/vins-fusion/LK光流.md",
+    "SLAM/basic/非线性优化.md",
+    "SLAM/basic/条件数.md",
+    "SLAM/basic/GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数.md",
+    "SLAM/basic/Ceres Solver.md",
     "SLAM/basic",
-    "SLAM/vins-fusion/zupt.md",
-    "Image/LM优化.png",
+    "Command.md",
+    "C++/设计模式/抽象工厂模式.md",
+    "C++/设计模式",
+    "C++/shm.md",
+    "C++",
+    "Prompt.md",
+    "SLAM/Catographer/栅格地图.md",
+    "SLAM/Catographer/非线性优化.md",
+    "SLAM/Catographer/CSM-Correlative Scan Match.md",
+    "SLAM/Catographer",
     "Image/分支定界分辨率.png",
     "Image/分支定界.png",
-    "Pasted image 20260128205416.png",
-    "SLAM/Catographer",
+    "Image/LM优化.png",
+    "SLAM/vins-fusion/VINS概述.md",
     "SLAM/vins-fusion/未命名",
     "Image/vins曝光时间.png",
     "WEB3/basic",
@@ -262,6 +226,8 @@
     "Image/block header.png",
     "Golang",
     "未命名.canvas",
+    "Image/uniswapv2-price.png",
+    "Image/x * y = k.png",
     "Image"
   ]
 }
