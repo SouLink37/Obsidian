@@ -72,9 +72,7 @@ Ros端提供了一个重定位action服务；
 ## 动态重定位：
 
 ###   流程图：
-
-![](https://lcn1mm23cxn4.feishu.cn/space/api/box/stream/download/asynccode/?code=MGRmNGNiZDRmNDM2Nzg0ZWE1NzBjM2IzNDAxNWRjY2VfYVFyQlVSU3dZbkdaZmtRd1A0TnlGVTFRWTVMMTdaUklfVG9rZW46QVNCU2JXallrb0J6cVp4eGlIdmNiZGk0blJoXzE3NzAwOTk4MzI6MTc3MDEwMzQzMl9WNA)
-
+![[动态重定位.png]]
   
 
   
@@ -145,9 +143,7 @@ Ros端提供了一个重定位action服务；
 
 ###   流程图：
 
-![](https://lcn1mm23cxn4.feishu.cn/space/api/box/stream/download/asynccode/?code=YTI2MDhiMDliMzU5MDU5NWU4NzRjYzc2Njg4NjRmYTNfUUV0aTZwMmNKaVFKYm5RM0k0WW1rUEFRQkpCMk96aW1fVG9rZW46UnFnbmJ2dnlLbzg4eXd4Zm5vdmNPalQybnNkXzE3NzAwOTk4MzI6MTc3MDEwMzQzMl9WNA)
-
-  
+![[静态重定位.png]]
 
 ###   流程介绍：
 
