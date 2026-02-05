@@ -8,20 +8,35 @@
         "type": "tabs",
         "children": [
           {
-            "id": "afd59d89472fc16b",
+            "id": "9aeeade8322ae6fe",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SLAM/Catographer/Refactoring-Relocation.md",
+                "file": "Prompt.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Refactoring-Relocation"
+              "title": "Prompt"
+            }
+          },
+          {
+            "id": "9227872aa6ad4aa8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Command.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Command"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -172,21 +187,26 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "bases:创建新数据库": false
     }
   },
-  "active": "afd59d89472fc16b",
+  "active": "9227872aa6ad4aa8",
   "lastOpenFiles": [
-    "SLAM/Catographer/CSM-Correlative Scan Match.md",
-    "SLAM/Catographer/Refactoring-Relocation.md",
-    "SLAM/面试收集.md",
+    "Prompt.md",
+    "Command.md",
     "README.md",
+    "自动驾驶车辆的地图构建.md",
+    "SLAM/Catographer/Refactoring-Relocation.md",
+    "Linux/实用命令.md",
+    "Linux",
+    "SLAM/Catographer/CSM-Correlative Scan Match.md",
+    "SLAM/面试收集.md",
     "SLAM/basic/GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数.md",
     "C++/设计模式/抽象工厂模式.md",
     "C++/shm.md",
@@ -211,12 +231,8 @@
     "Image/分支定界分辨率.png",
     "Image/分支定界.png",
     "Pasted image 20260128205416.png",
-    "SLAM/camera/双目相机标定.md",
     "SLAM/Catographer",
-    "SLAM/VINS_DETAILED_INTRODUCTION.md",
     "SLAM/vins-fusion/未命名",
-    "WEB3/solidity/基础.md",
-    "WEB3/solidity/数组.md",
     "Image/vins曝光时间.png",
     "WEB3/basic",
     "Image/xy = k.png",
