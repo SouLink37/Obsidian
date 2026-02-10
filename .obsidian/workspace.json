@@ -13,15 +13,66 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WEB3/solidity/基础.md",
+                "file": "Prompt.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "基础"
+              "title": "Prompt"
+            }
+          },
+          {
+            "id": "9227872aa6ad4aa8",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Image/静态重定位.png"
+              },
+              "icon": "lucide-image",
+              "title": "静态重定位"
+            }
+          },
+          {
+            "id": "53905075c66ba525",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Image/静态重定位.png"
+              },
+              "icon": "lucide-image",
+              "title": "静态重定位"
+            }
+          },
+          {
+            "id": "161d55e42bea01fc",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Image/动态重定位.png"
+              },
+              "icon": "lucide-image",
+              "title": "动态重定位"
+            }
+          },
+          {
+            "id": "acbd407dda12ae8d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3DGS/basic/球谐函数.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "球谐函数"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -53,7 +104,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "calldata",
+                "query": "奇异矩阵（Singular",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -181,53 +232,53 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "9aeeade8322ae6fe",
+  "active": "acbd407dda12ae8d",
   "lastOpenFiles": [
-    "未命名 1.base",
+    "Command.md",
     "未命名.base",
-    "WEB3/solidity/数组.md",
-    "WEB3/solidity/REMIX.md",
-    "WEB3/solidity/进阶.md",
-    "WEB3/solidity/特殊类型.md",
-    "WEB3/solidity/基础.md",
-    "动态重定位.png",
-    "静态重定位.png",
+    "3DGS/basic/球谐函数.md",
     "SLAM/Catographer/Refactoring-Relocation.md",
-    "SLAM/camera/双目相机标定.md",
+    "3DGS/basic",
+    "3DGS",
+    "Image/静态重定位.png",
+    "Image/动态重定位.png",
+    "Prompt.md",
+    "未命名 1.base",
+    "SLAM/vins-fusion/zupt.md",
+    "Golang/用户认证与授权.md",
     "SLAM/面试收集.md",
     "SLAM/资料.md",
+    "README.md",
+    "自动驾驶车辆的地图构建.md",
+    "Linux/实用命令.md",
+    "Linux",
+    "SLAM/Catographer/CSM-Correlative Scan Match.md",
+    "SLAM/basic/GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数.md",
+    "C++/设计模式/抽象工厂模式.md",
+    "C++/shm.md",
+    "C++/设计模式",
+    "SLAM/vins-fusion/LK光流.md",
     "SLAM/vins-fusion/td优化.md",
+    "td优化｜**时间偏移补偿**.md",
+    "SLAM/vins-fusion/loop fusion.md",
+    "SLAM/vins-fusion/initialization.md",
     "SLAM/vins-fusion/imu预积分和visual条件数.md",
     "SLAM/vins-fusion/estimator.md",
-    "SLAM/vins-fusion/LK光流.md",
-    "SLAM/basic/非线性优化.md",
-    "SLAM/basic/条件数.md",
-    "SLAM/basic/GN,LM、边缘化、FEJ、一致性、可观性、E,H、李代数.md",
+    "SLAM/Catographer/栅格地图.md",
+    "SLAM/vins-fusion/VINS概述.md",
     "SLAM/basic/Ceres Solver.md",
     "SLAM/basic",
-    "Command.md",
-    "C++/设计模式/抽象工厂模式.md",
-    "C++/设计模式",
-    "C++/shm.md",
-    "C++",
-    "Prompt.md",
-    "SLAM/Catographer/栅格地图.md",
-    "SLAM/Catographer/非线性优化.md",
-    "SLAM/Catographer/CSM-Correlative Scan Match.md",
-    "SLAM/Catographer",
+    "Image/LM优化.png",
     "Image/分支定界分辨率.png",
     "Image/分支定界.png",
-    "Image/LM优化.png",
-    "SLAM/vins-fusion/VINS概述.md",
+    "Pasted image 20260128205416.png",
+    "SLAM/Catographer",
     "SLAM/vins-fusion/未命名",
     "Image/vins曝光时间.png",
     "WEB3/basic",
     "Image/xy = k.png",
     "Image/block header.png",
-    "Golang",
     "未命名.canvas",
-    "Image/uniswapv2-price.png",
-    "Image/x * y = k.png",
-    "Image"
+    "Image/uniswapv2-price.png"
   ]
 }
