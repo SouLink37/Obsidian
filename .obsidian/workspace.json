@@ -63,12 +63,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "3DGS/basic/球谐函数.md",
+                "file": "WEB3/solidity/代理升级.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "球谐函数"
+              "title": "代理升级"
             }
           }
         ],
@@ -129,7 +129,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 246.5
   },
   "right": {
     "id": "aaa6d272afc46d58",
@@ -234,9 +234,19 @@
   },
   "active": "acbd407dda12ae8d",
   "lastOpenFiles": [
+    "WEB3/solidity/进阶.md",
+    "WEB3/solidity/代理升级.md",
+    "WEB3/提问：.md",
+    "WEB3/solidity/数组.md",
+    "WEB3/solidity/特殊类型.md",
+    "WEB3/solidity/基础.md",
+    "WEB3/UniSwap/v2.md",
+    "WEB3/solidity/REMIX.md",
+    "WEB3/basic/共识机制.md",
+    "WEB3/basic/区块链共识算法.md",
+    "3DGS/basic/球谐函数.md",
     "Command.md",
     "未命名.base",
-    "3DGS/basic/球谐函数.md",
     "SLAM/Catographer/Refactoring-Relocation.md",
     "3DGS/basic",
     "3DGS",
@@ -258,15 +268,6 @@
     "C++/shm.md",
     "C++/设计模式",
     "SLAM/vins-fusion/LK光流.md",
-    "SLAM/vins-fusion/td优化.md",
-    "td优化｜**时间偏移补偿**.md",
-    "SLAM/vins-fusion/loop fusion.md",
-    "SLAM/vins-fusion/initialization.md",
-    "SLAM/vins-fusion/imu预积分和visual条件数.md",
-    "SLAM/vins-fusion/estimator.md",
-    "SLAM/Catographer/栅格地图.md",
-    "SLAM/vins-fusion/VINS概述.md",
-    "SLAM/basic/Ceres Solver.md",
     "SLAM/basic",
     "Image/LM优化.png",
     "Image/分支定界分辨率.png",
