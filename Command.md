@@ -16,3 +16,16 @@ du -had5 | sort -rh | head
 - head：只看 **前 10 个**
     
 👉 找出当前目录下 **占空间最大的前 10 个文件/目录（深度 ≤5）**
+
+
+## ali openclaw
+```
+nohup openclaw gateway run --token e7d3d9021a720d184208f99980d5526a --bind loopback > gateway.log 2>&1 &
+
+tail -f gateway.log
+```
+
+
+## agent 分配
+
+>先调研这个问题的研究方向 ，然后给每个研究方向分配2个专家, 最后汇总结果。
