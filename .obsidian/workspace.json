@@ -63,12 +63,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Command.md",
+                "file": "Golang/问题笔记.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Command"
+              "title": "问题笔记"
             }
           }
         ],
@@ -234,8 +234,16 @@
   },
   "active": "acbd407dda12ae8d",
   "lastOpenFiles": [
-    "Prompt.md",
+    "Golang/用户认证与授权.md",
+    "Golang/问题笔记.md",
+    "Golang/Gin.md",
+    "Golang/JWT.md",
+    "Golang/basic.md",
+    "Golang/back-end.md",
+    "Golang/字符串切片-header提取.md",
+    "Golang/中间件（Middleware）.md",
     "Command.md",
+    "Prompt.md",
     "AI/AgentSwarm/Basic.md",
     "3DGS/basic/球谐函数.md",
     "AI/AgentSwarm",
@@ -249,7 +257,6 @@
     "Image/动态重定位.png",
     "未命名 1.base",
     "SLAM/vins-fusion/zupt.md",
-    "Golang/用户认证与授权.md",
     "SLAM/面试收集.md",
     "SLAM/资料.md",
     "README.md",
@@ -262,13 +269,6 @@
     "C++/shm.md",
     "C++/设计模式",
     "SLAM/vins-fusion/LK光流.md",
-    "SLAM/vins-fusion/td优化.md",
-    "td优化｜**时间偏移补偿**.md",
-    "SLAM/vins-fusion/loop fusion.md",
-    "SLAM/vins-fusion/initialization.md",
-    "SLAM/vins-fusion/imu预积分和visual条件数.md",
-    "SLAM/vins-fusion/estimator.md",
-    "SLAM/Catographer/栅格地图.md",
     "SLAM/basic",
     "Image/LM优化.png",
     "Image/分支定界分辨率.png",
