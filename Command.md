@@ -25,4 +25,8 @@ nohup openclaw gateway run --token e7d3d9021a720d184208f99980d5526a --bind loopb
 tail -f gateway.log
 ```
 
-
+## 切换模型
+```
+/model moonshot/kimi-k2.5
+/model alibaba-cloud/qwen3-max-2024-01-23
+```
