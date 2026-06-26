@@ -1,3 +1,6 @@
+
+https://datawhalechina.github.io/all-in-rag/#/chapter1/03_get_start_rag
+
 > **Retrieval-Augmented Generation -检索增强生成**。
 
 ## 一句话定义

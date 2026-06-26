@@ -77,16 +77,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "AI/Agent/知识工程/问答.md",
+                "file": "BI/c端售后.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "问答"
+              "title": "c端售后"
+            }
+          },
+          {
+            "id": "cc9348efadb9d6e2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AI/Basic/Transformer 中的 Encoder 与 Decoder.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Transformer 中的 Encoder 与 Decoder"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -246,54 +260,54 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "85689226e46d8759",
+  "active": "cc9348efadb9d6e2",
   "lastOpenFiles": [
-    "AI/Agent/知识工程/原子知识库 + 因果推论 + 知识工程诊断框架.md",
-    "AI/Agent/知识工程/问答.md",
-    "AI/Agent/知识工程",
-    "Command.md",
-    "AI/Agent/原子笔记+知识工程+",
-    "AI/Agent/RAG 检索增强生成.md",
-    "AI/Agent",
-    "Robotic/Planning/直线规控-牵引.md",
-    "Robotic/Planning",
-    "Robotic",
-    "Prompt.md",
-    "Golang/back-end.md",
-    "Golang/basic.md",
-    "Golang/Gin.md",
-    "Golang/问题笔记.md",
-    "Golang/用户认证与授权.md",
-    "Golang/JWT.md",
-    "Golang/字符串切片-header提取.md",
-    "Golang/中间件（Middleware）.md",
     "AI/AgentSwarm/Basic.md",
-    "3DGS/basic/球谐函数.md",
-    "AI/AgentSwarm",
-    "WEB3/提问：.md",
+    "AI/Basic/Transformer 中的 Encoder 与 Decoder.md",
+    "AI/Basic",
+    "AI/Agent/RAG/RAG 检索增强生成.md",
+    "AI/Agent/RAG/数据清洗.md",
+    "AI/AI工具/OpenCluely.md",
+    "AI/AI工具/代码限制skill.md",
+    "AI/Agent/RAG/向量数据库.md",
+    "Image/rag_full_pipeline_index_and_query_phases.svg",
+    "AI/LangGraph/LangGraph.md",
+    "AI/LangGraph/LangGraph + LangChain（RAG）.md",
+    "AI/Agent/RAG",
+    "AI/Agent/Basic/Transformer.md",
+    "AI/Agent/Basic",
+    "BI/c端售后.md",
+    "claude vs GLM.md",
+    "Image/Pasted image 20260603161645.png",
+    "BI",
+    "AI/未命名.md",
+    "AI/LangGraph",
+    "AI/openspec/QUICK_START.md",
+    "WEB3/solidity/基础.md",
+    "AI/AI工具",
     "WEB3/solidity/代理升级.md",
-    "未命名.base",
-    "Robotic/SLAM/Catographer/Refactoring-Relocation.md",
-    "3DGS/basic",
-    "3DGS",
+    "AI/Harness/1.1 为什么需要 Agent Harness 而非简单封装.md",
+    "AI/Harness/1.4Agent Harness 设计哲学的五大原则.md",
+    "AI/Harness/1.3核心源码文件及其职责.md",
+    "AI/Harness/1.2技术栈.md",
+    "WEB3/solidity/进阶.md",
+    "WEB3/solidity/REMIX.md",
+    "WEB3/solidity/数组.md",
+    "WEB3/solidity/特殊类型.md",
+    "Golang/Gin.md",
+    "Golang/JWT.md",
+    "AI/Harness",
+    "AI/Agent/知识工程",
+    "AI/Agent/原子笔记+知识工程+",
+    "AI/Agent",
     "Image/静态重定位.png",
     "Image/动态重定位.png",
-    "未命名 1.base",
-    "Robotic/SLAM/vins-fusion/zupt.md",
-    "Robotic/SLAM/面试收集.md",
-    "Robotic/SLAM/资料.md",
-    "README.md",
-    "自动驾驶车辆的地图构建.md",
-    "Linux/实用命令.md",
-    "Robotic/SLAM/Catographer/CSM-Correlative Scan Match.md",
     "Image/LM优化.png",
     "Image/分支定界分辨率.png",
     "Image/分支定界.png",
     "Pasted image 20260128205416.png",
     "Image/vins曝光时间.png",
     "Image/xy = k.png",
-    "Image/block header.png",
-    "未命名.canvas",
-    "Image/uniswapv2-price.png"
+    "未命名.canvas"
   ]
 }
